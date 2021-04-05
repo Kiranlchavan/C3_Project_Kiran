@@ -72,5 +72,38 @@ public class Restaurant {
     public String getName() {
         return name;
     }
+    public List<Item> placeOrder(List<String> orderItem) throws itemNotFoundException {
+        List<Item> orders = new ArrayList<>();
+        List<Item> menu = getMenu();
+        for (String order : orderItem)
+            if(findItemByName(order)==null){
+                throw new itemNotFoundException("The Item Ordered Is Not In Menu");
+            }
+
+        for (Item i : menu) {
+            for (String order : orderItem) {
+                String name = i.getName();
+
+                if (name.equalsIgnoreCase(order)) {
+                    orders.add(i);
+                }
+            }
+        }
+
+        return orders;
+
+    }
+
+    public int getOrderValue(List<Item> items) throws itemNotFoundException {
+        int orderValue = 0;
+        for (Item item : items) {
+            orderValue = orderValue + item.getPrice();
+        }
+        if(orderValue==0){
+            throw new itemNotFoundException("No Items Are Added To Your Order");
+        }
+
+        return  orderValue;
+    }
 
 }

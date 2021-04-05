@@ -130,8 +130,8 @@ class RestaurantTest {
                 restaurant.addToMenu("Sweet corn soup", 119);
                 restaurant.addToMenu("Vegetable lasagne", 269);
                 List<String> order = new ArrayList<>();
-                order.add("Fried Rice");
                 order.add("Vegetable lasagne");
+                order.add("Vegetable Fried Rice");
                 List<Item> finalOrder = restaurant.placeOrder(order);
 
             }
